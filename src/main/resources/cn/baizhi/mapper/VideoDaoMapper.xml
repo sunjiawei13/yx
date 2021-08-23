@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.baizhi.dao.VideoDao">
+
+    <!--
+    private String id;
+  private String title;
+  private String brief;
+  private String coverpath;
+  private String videopath;
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date createdate;
+  private Category category;
+  private User user;
+  private String groupid;-->
+
+    <!--手动映射-->
+    <resultMap id="all" type="cn.baizhi.entity.Video">
+        <!--主属性-->
+        <id column="id" property="id"></id>
+        <!--普通属性-->
+        <result column="title" property="title"></result>
+        <result column="brief" property="brief"></result>
+        <result column="coverpath" property="coverpath"></result>
+        <result column="videopath" property="videopath"></result>
+        <result column="createdate" property="createdate"></result>
+        <!--关系属性   单独的对象-->
+        <association property="category">
+        <id column="categoryid" property="id"></id>
+        <result column="catename" property="catename"></result>
+        </association>
+
+        <association property="user">
+            <id column="id" property="id"></id>
+            <result column="username" property="username"></result>
+        </association>
+        <!--关系属性   集合-->
+        <!--<collection property=""></collection>-->
+    </resultMap>
+    <!-- //分页查
+    List<Video> queryByPage(int start,int end);-->
+    <select id="queryByPage" resultMap="all">
+        select video.id,title,video.brief,coverpath,videopath,video.createdate,categoryid,userid,
+        category.catename,user.id,user.username from
+    (select id,title,brief,coverpath,videopath,createdate,categoryid,userid from yxvideo limit #{start},#{end})video
+    left join yxcategory category on video.categoryid=category.id
+    left join yxuser user on video.userid=user.id
+    </select>
+    <!--//查总条数
+    int queryCount();-->
+    <select id="queryCount" resultType="int">
+        select count(*) from yxvideo
+    </select>
+
+    <!--//添加视频
+    void add(Video video);-->
+    <insert id="add" parameterType="cn.baizhi.entity.Video">
+      insert into yxvideo(id,title,brief,coverpath,videopath,createdate,categoryid)
+      values(#{id},#{title},#{brief},#{coverpath},#{videopath},#{createdate},#{category.id})
+    </insert>
+    <!--//根据id  查询出这条视频的信息
+    void queryById(String id);-->
+    <!--<resultMap id="queryone" type="cn.baizhi.entity.Video">
+        <id column="id" property="id"></id>
+    </resultMap>-->
+    <select id="queryById" parameterType="String" resultType="cn.baizhi.entity.Video">
+        select id,title,brief,coverpath,videopath,createdate
+        from yxvideo where id=#{id}
+    </select>
+    <!--//根据id 删除视频信息
+    void deleteById(String id);-->
+    <delete id="deleteById" parameterType="String">
+        delete from yxvideo where id=#{id}
+    </delete>
+</mapper>

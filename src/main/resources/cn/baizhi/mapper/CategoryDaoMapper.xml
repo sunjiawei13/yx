@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.baizhi.dao.CategoryDao">
+
+    <sql id="all">
+        select id,catename,levels,parentid from yxcategory
+    </sql>
+
+    <!--//根据级别 查询 级别
+    List<Category> queryByLevels(int levels);-->
+    <select id="queryByLevels" parameterType="int" resultType="cn.baizhi.entity.Category">
+      <include refid="all"/> where levels=#{levels}
+    </select>
+    <!--//根据父项id 查询所有二级类别
+    List<Category>queryByParendId(String id);-->
+    <select id="queryByParentId" parameterType="String" resultType="cn.baizhi.entity.Category">
+        <include refid="all"/> where parentid=#{id}
+    </select>
+
+    <!--// 添加类别
+    void saveLevel2(Category category);-->
+    <insert id="save" parameterType="cn.baizhi.entity.Category">
+        insert into yxcategory values (#{id}, #{catename}, #{levels}, #{parentid});
+    </insert>
+
+    <!--//根据id删除
+    void delete(String id);-->
+    <delete id="delete" parameterType="String">
+        delete from yxcategory where id=#{id}
+    </delete>
+    <!--//根据id查询出这条数据的信息
+    void queryById(String id);-->
+    <select id="queryById" parameterType="String" resultType="cn.baizhi.entity.Category">
+        <include refid="all"/>where id=#{id}
+    </select>
+</mapper>

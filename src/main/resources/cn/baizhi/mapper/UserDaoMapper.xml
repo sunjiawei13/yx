@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.baizhi.dao.UserDao">
+    <!-- //范围查询    List<User> queryRange(@Param("start") int start,@Param("end") int end)-->
+
+    <sql id="all">
+        select id,username,phone,headimg,brief,wechat,createdate,status from yxuser
+    </sql>
+    <select id="queryRange" resultType="cn.baizhi.entity.User">
+        <include refid="all"/>limit #{start},#{end }
+    </select>
+    <!-- 查总条数    int queryPageNum();-->
+    <select id="queryPageNum" resultType="int">
+        select count(*) from  yxuser
+    </select>
+    <!--
+    //修改状态
+    void updateStatus(@Param("id") String id,@Param("status") int status);
+-->
+    <update id="updateStatus">
+        update yxuser set status=#{status} where id=#{id}
+    </update>
+    <!--//添加
+    void add(User user);-->
+    <insert id="add" parameterType="cn.baizhi.entity.User">
+        insert into yxuser values(#{id},#{username},#{phone},#{headimg},#{brief},#{wechat},#{createdate},#{status},#{sex})
+    </insert>
+    <!--//删除
+    void deleteById(String id);-->
+    <delete id="deleteById" parameterType="String">
+        delete from yxuser where id=#{id}
+    </delete>
+    <!-- //查所有
+    List<User>queryAll();-->
+    <select id="queryAll" resultType="cn.baizhi.entity.User">
+        <include refid="all"/>
+    </select>
+    <!--//查询男生每月注册人数
+    List<MonthAndCount> queryMonthCount();-->
+    <select id="queryMonthCount" parameterType="String" resultType="cn.baizhi.vo.MonthAndCount">
+    select month(createdate) month,count(*) count from yxuser where sex=#{sex}
+    group by  month(createdate)
+    </select>
+    
+</mapper>

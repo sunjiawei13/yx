@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.baizhi.dao.VideoVoDao">
+   <!--//查所有视频
+    List<VideoVo> queryAllVideo();-->
+    <select id="queryAllVideo" resultType="cn.baizhi.vo.VideoVo">
+      select v.id,v.title videoTitle,v.coverpath cover,
+       v.videopath path,v.createdate uploadTime,
+       v.brief description,c.catename cateName,
+       u.headimg userPhone
+from yxvideo v
+left join yxcategory c on v.categoryid=c.id
+left join yxuser u on v.userid=u.id
+order by v.createdate desc
+    </select>
+
+</mapper>

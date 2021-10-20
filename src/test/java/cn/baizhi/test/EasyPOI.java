@@ -63,21 +63,21 @@ public class EasyPOI {
         ImportParams params = new ImportParams();
         params.setTitleRows(1);//表格标题行数,默认0
         params.setHeadRows(2);//表头行数,默认1
-        //                                 导入位置     导入类型     导入参数对象
+        //                                                                                   导入位置     导入类型     导入参数对象
         List<Teacher> teachers = ExcelImportUtil.importExcel(new File("E:\\teachereasypoi.xls"), Teacher.class, params);
 
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
     }
-    //user导出D:\IDEACodes\yx_sjw\src\1.jpg
+    //user导出D:\IDEACodes\yx_sjw\src\1.jpg   网络路径不行
     @Test
     public void test4() throws IOException {
         List<User> list=new ArrayList<>();
         list.add(new User("1", "src/1.jpg", "小黑1"));
         list.add(new User("2", "src/2.gif", "小黑2"));
         list.add(new User("3", "http://20210816class.oss-cn-beijing.aliyuncs.com/16292604886871.jpg", "小黑3"));
-        list.add(new User("4", "E:\\1.jpg", "小黑4"));
+        list.add(new User("4", "E:\\2.jpg", "小黑4"));
 
         //参数：标题，表名，实体类类对象，导出的集合
         Workbook workbook =ExcelExportUtil.exportExcel(new ExportParams

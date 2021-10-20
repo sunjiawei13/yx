@@ -62,6 +62,9 @@ public class AliYun {
         // 关闭OSSClient。
         ossClient.shutdown();
     }
+
+
+
     //删除方法   删照片
     public static void deleteFile(String fileName){
         // yourEndpoint填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
@@ -80,7 +83,9 @@ public class AliYun {
         ossClient.shutdown();
     }
 
- //截取视频针
+
+
+    //截取视频针
     public static String jqvideo(String filePath){
         // Endpoint以杭州为例，其它Region请按实际情况填写。
         String endpoint = AliYunConfig.ENDPOINT;
@@ -106,6 +111,9 @@ public class AliYun {
         ossClient.shutdown();
         return signedUrl.toString();
     }
+
+
+
     // 流式上传     上传网络流   视频
     public static void URLupload(String url,String fileName){
         // yourEndpoint填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
@@ -176,6 +184,9 @@ public class AliYun {
         }
         return map;
     }
+
+
+    //文件下载
     //fileName:文件名
     public static void download(String fileName) {
         // yourEndpoint填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。

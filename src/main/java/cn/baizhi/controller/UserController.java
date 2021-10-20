@@ -26,7 +26,10 @@ public class UserController {
     private UserService us;
     //分页查业务
     @RequestMapping("/queryByPage")
-    public Map<String, Object> queryByPage(int page){// page=2
+    public Map<String, Object> queryByPage(int page ){// page=2
+        //得到session id
+
+
         int size =3;
         return us.queryByPage(page,size);//第二页的3条数据
     }

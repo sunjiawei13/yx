@@ -19,7 +19,7 @@ public class AliYunOssTest {
 // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录RAM控制台创建RAM账号。
         String accessKeyId = "LTAI5tJsqFUBRbCEQ5srjkhC";
         String accessKeySecret = "9e0PoaCvXeDbs5mHe8G8zUnR0WyjXT";
-        //String bucketName = "<2021816>";//2101class
+        //String bucketName = "20210816class";//2101class
 
 // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
@@ -29,7 +29,7 @@ public class AliYunOssTest {
 
 // 创建PutObjectRequest对象。
 // 依次填写Bucket名称（例如examplebucket）和Object完整路径（例如exampledir/exampleobject.txt）。Object完整路径中不能包含Bucket名称。
-        PutObjectRequest putObjectRequest = new PutObjectRequest("2101class", "xiaoming/a.txt", new ByteArrayInputStream(content.getBytes()));
+        PutObjectRequest putObjectRequest = new PutObjectRequest("20210816class", "a.txt", new ByteArrayInputStream(content.getBytes()));
 
 // 如果需要上传时设置存储类型和访问权限，请参考以下示例代码。
 // ObjectMetadata metadata = new ObjectMetadata();
@@ -52,14 +52,14 @@ public class AliYunOssTest {
 // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录RAM控制台创建RAM账号。
         String accessKeyId = "LTAI5tJsqFUBRbCEQ5srjkhC";
         String accessKeySecret = "9e0PoaCvXeDbs5mHe8G8zUnR0WyjXT";
-        //String bucketName = "<2021816>";//2101class
+        //String bucketName = "<20210816class>";//2101class
 // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
 // 创建PutObjectRequest对象。
 // 依次填写Bucket名称（例如examplebucket）、Object完整路径（例如exampledir/exampleobject.txt）和本地文件的完整路径。Object完整路径中不能包含Bucket名称。
 // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件。
-        PutObjectRequest putObjectRequest = new PutObjectRequest("2021815class", "2.jpg", new File("D:\\localpath\\2.jpg"));
+        PutObjectRequest putObjectRequest = new PutObjectRequest("20210816class", "2.jpg", new File("E:\\2.jpg"));
 
 // 如果需要上传时设置存储类型和访问权限，请参考以下示例代码。
 // ObjectMetadata metadata = new ObjectMetadata();
@@ -81,7 +81,7 @@ public class AliYunOssTest {
 // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录RAM控制台创建RAM账号。
         String accessKeyId = "LTAI5tJsqFUBRbCEQ5srjkhC";
         String accessKeySecret = "9e0PoaCvXeDbs5mHe8G8zUnR0WyjXT";
-        String bucketName = "2021816class";//2101class
+        String bucketName = "20210816class";//2101class
 
 // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);

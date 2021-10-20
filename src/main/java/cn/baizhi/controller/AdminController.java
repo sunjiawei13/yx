@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 
@@ -27,10 +28,10 @@ public class AdminController {
 
     //登录
     @RequestMapping("/login")           //@requstboby 参数是一个对象
-    public Map<String, Object> login(@RequestBody Admin admin){
+    public Map<String, Object> login(@RequestBody Admin admin,HttpServletRequest request){
         log.debug("执行了");
         log.debug(admin.toString());
-        return as.login(admin.getUsername(),admin.getPassword() );
+        return as.login(admin.getUsername(),admin.getPassword(),request);
 
 
     }

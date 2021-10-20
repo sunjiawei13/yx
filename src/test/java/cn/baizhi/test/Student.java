@@ -19,6 +19,7 @@ public class Student {
     private String name;
     @Excel(name ="学生年龄")
     private Integer age;
+    //                                      导出                          导入
     @Excel(name ="学生生日",exportFormat = "yyyy年MM月dd日",importFormat ="yyyy年MM月dd日" )
     private Date bir;
 }

@@ -35,7 +35,7 @@ public class CacheHashAspect {
         //实参值
         Object[] args = joinPoint.getArgs();//方法参数
         for (Object arg : args) {
-            System.out.println(args);
+            System.out.println(arg);
             sb.append(arg);
         }
 
